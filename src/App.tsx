@@ -77,4 +77,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+export default App; //追加
