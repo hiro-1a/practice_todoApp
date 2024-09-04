@@ -5,9 +5,8 @@ import TodoForm from './TodoForm';
 
 type Todo = {
   name: string;
-  date: string;
-  endDate: string; // 終了予定日
-  createdDate: Date; // 作成日
+  endDate: string;
+  createdDate: Date;
   completed: boolean;
 };
 
@@ -18,14 +17,14 @@ const App: React.FC = () => {
 
   const handleAddTodo = () => {
     setCurrentTodo(null);
-    setIsModalOpen(true);
+    setIsModalOpen(true); 
   };
 
-  const handleSaveTodo = (todo: { name: string; date: string; endDate: string }) => {
+  const handleSaveTodo = (todo: { name: string; endDate: string }) => {
     const newTodo: Todo = {
       ...todo,
       completed: false,
-      createdDate: new Date(), // 現在の日付を作成日として追加
+      createdDate: new Date(),
     };
     if (currentTodo !== null) {
       const updatedTodos = [...todos];
@@ -34,7 +33,7 @@ const App: React.FC = () => {
     } else {
       setTodos([...todos, newTodo]);
     }
-    setIsModalOpen(false);
+    setIsModalOpen(false); 
   };
 
   const handleEditTodo = (index: number) => {
@@ -59,14 +58,20 @@ const App: React.FC = () => {
   return (
     <div>
       <h1>Todo List</h1>
-      <button onClick={handleAddTodo}>+</button>
+      <button onClick={handleAddTodo}>+</button>  {}
+      
+      {}
       <TodoList
         todos={todos}
         onEdit={handleEditTodo}
         onDelete={handleDeleteTodo}
         onComplete={handleCompleteTodo}
       />
+
+      {}
       <button onClick={handleClearCompleted}>Clear Completed</button>
+
+      {}
       <Modal show={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <TodoForm
           onSubmit={handleSaveTodo}
@@ -77,4 +82,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App; //test
+export default App;

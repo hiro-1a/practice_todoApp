@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 
 type TodoFormProps = {
-  onSubmit: (todo: { name: string; date: string; endDate: string }) => void;
-  initialData?: { name: string; date: string; endDate: string };
+  onSubmit: (todo: { name: string; endDate: string }) => void;
+  initialData?: { name: string; endDate: string };
 };
 
-const TodoForm: React.FC<TodoFormProps> = ({ onSubmit, initialData = { name: '', date: '', endDate: '' } }) => {
+const TodoForm: React.FC<TodoFormProps> = ({ onSubmit, initialData = { name: '', endDate: '' } }) => {
   const [name, setName] = useState<string>(initialData.name);
-  const [date, setDate] = useState<string>(initialData.date);
   const [endDate, setEndDate] = useState<string>(initialData.endDate);
 
   const handleSubmit = () => {
-    onSubmit({ name, date, endDate });
+    onSubmit({ name, endDate });
   };
 
   return (
@@ -21,11 +20,6 @@ const TodoForm: React.FC<TodoFormProps> = ({ onSubmit, initialData = { name: '',
         value={name}
         onChange={(e) => setName(e.target.value)}
         placeholder="Task Name"
-      />
-      <input
-        type="datetime-local"
-        value={date}
-        onChange={(e) => setDate(e.target.value)}
       />
       <input
         type="datetime-local"

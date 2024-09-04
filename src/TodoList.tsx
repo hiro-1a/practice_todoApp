@@ -1,9 +1,7 @@
 import React from 'react';
-import TodoItem from './TodoItem';
 
 type Todo = {
   name: string;
-  date: string;
   endDate: string;
   createdDate: Date;
   completed: boolean;
@@ -20,13 +18,18 @@ const TodoList: React.FC<TodoListProps> = ({ todos, onEdit, onDelete, onComplete
   return (
     <div>
       {todos.map((todo, index) => (
-        <TodoItem
-          key={index}
-          todo={todo}
-          onEdit={() => onEdit(index)}
-          onDelete={() => onDelete(index)}
-          onComplete={() => onComplete(index)}
-        />
+        <div key={index} className="todo-item">
+          <input
+            type="checkbox"
+            checked={todo.completed}
+            onChange={() => onComplete(index)}
+          />
+          <span>{todo.name}</span>
+          <span>End Date: {todo.endDate}</span>
+          <span>Created: {todo.createdDate.toLocaleDateString()}</span>
+          <button onClick={() => onEdit(index)}>Edit</button>
+          <button onClick={() => onDelete(index)}>Delete</button>
+        </div>
       ))}
     </div>
   );
